@@ -1,10 +1,9 @@
 # app.py
-import logging
-import requests
-import os
-import time
 import datetime
 import get
+import logging
+import os
+import time
 
 logger = logging.getLogger(__name__)
 
