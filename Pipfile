@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 requests = "*"
 redivis = "*"
+dotenv = "*"
+setuptools = "*"
 
 [dev-packages]
 

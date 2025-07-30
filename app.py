@@ -1,22 +1,55 @@
 # app.py
-import datetime
+import dotenv
+from dotenv import load_dotenv
+
+# Load environment variables FIRST
+load_dotenv() 
+
+# --- DEBUGGING BLOCK ---
+# Check if the .env file is found and see if it loads successfully.
+env_path = dotenv.find_dotenv()
+print(f"Path to .env file found: {env_path}") # Should show the full path to your file
+was_loaded = load_dotenv()
+print(f"Was the .env file loaded? {was_loaded}") # Should print: True
+# --- END DEBUGGING ---
+
+# Now import other modules
 import get
+import datetime
 import logging
-import os
 import time
+import os # os is needed for the timezone setup
 
+# === LOGGING SETUP === 
 logger = logging.getLogger(__name__)
+console_handler = logging.StreamHandler()
+file_handler = logging.FileHandler("app.log", mode="a", encoding="utf-8")
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
+formatter = logging.Formatter(
+   "{asctime} - {levelname} - {message}",
+    style="{",
+    datefmt="%Y-%m-%d %H:%M",
+)
+console_handler.setFormatter(formatter) # You should set the formatter for your handlers
+file_handler.setFormatter(formatter)
 
-# Timezone setup
+# === TIMEZONE SETUP ===
 os.environ['TZ'] = 'US/Pacific'
 time.tzset()
-now = datetime.datetime.now()
 
 def main():
-    logging.basicConfig(filename='app.log', level=logging.INFO)
-    logger.info(f'Started at {now}')
+    # Use the logger configured above, not logging.basicConfig
+    logger.setLevel(logging.INFO) 
+    
+    start_time = datetime.datetime.now()
+    logger.info(f'Started at {start_time}')
+    
     get.get()
-    logger.info(f'Finished at {now}')
+    
+    end_time = datetime.datetime.now()
+    elapsed_time = end_time - start_time
+    logger.info(f'Finished at {end_time}. Elapsed time: {elapsed_time}')
 
 if __name__ == '__main__':
     main()
