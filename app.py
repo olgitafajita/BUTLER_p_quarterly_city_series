@@ -1,24 +1,15 @@
 # app.py
-import dotenv
 from dotenv import load_dotenv
 
 # Load environment variables FIRST
 load_dotenv() 
-
-# --- DEBUGGING BLOCK ---
-# Check if the .env file is found and see if it loads successfully.
-env_path = dotenv.find_dotenv()
-print(f"Path to .env file found: {env_path}") # Should show the full path to your file
-was_loaded = load_dotenv()
-print(f"Was the .env file loaded? {was_loaded}") # Should print: True
-# --- END DEBUGGING ---
 
 # Now import other modules
 import get
 import datetime
 import logging
 import time
-import os # os is needed for the timezone setup
+import os
 
 # === LOGGING SETUP === 
 logger = logging.getLogger(__name__)
@@ -31,7 +22,7 @@ formatter = logging.Formatter(
     style="{",
     datefmt="%Y-%m-%d %H:%M",
 )
-console_handler.setFormatter(formatter) # You should set the formatter for your handlers
+console_handler.setFormatter(formatter)
 file_handler.setFormatter(formatter)
 
 # === TIMEZONE SETUP ===
