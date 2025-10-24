@@ -10,9 +10,15 @@ Coming soon: Once WordPress updating is available via API, this program will do 
 2. Rename the repo following this convention `BUTLER_[name_of_dataset]`. So for the `r_gva` dataset it's `BUTLER_r_gva`.
 3. Change the following variables in the [`get.py`](get.py) file. 
 ```
-username = "[YOUR_USERNAME]"  # Replace with your Redivis username
-workflow_name = "[WORKFLOW_NAME]"  # Replace with your workflow name
-notebook_name = "[NOTEBOOK_NAME]"  # Replace with your notebook name
+    username = "[YOUR_USERNAME]"  # Replace with your Redivis username
+    workflow_name = "[WORKFLOW_NAME]"  # Replace with your workflow name
+    notebook_name = "[NOTEBOOK_NAME]"  # Replace with your notebook name
+```
+Sticking with the `r_gva` example that would be:
+```
+    username = "glevines"
+    workflow_name = "gva:kgtn"
+    notebook_name = "gva_updater:x4bf"
 ```
 4. Lastly, set the time that the notebook should run in the [`dataset-butler.yml`](.github/workflows/dataset-butler.yml) file. If you don't wanna think too hard about crontab time formatting here's a [helpful resource](https://crontab.guru/).
 ```
