@@ -2,20 +2,16 @@
 import os
 import logging
 import redivis
-
 logger = logging.getLogger(__name__)
-
 REDIVIS_API_TOKEN = os.environ["REDIVIS_API_TOKEN"]
-
 if not REDIVIS_API_TOKEN:
     raise RuntimeError("Missing REDIVIS_API_TOKEN environment variable.")
-
 def get():
     
     logger.info('Getting notebooks from Redivis...')
-    username = "[YOUR_USERNAME]"  # Replace with your Redivis username
-    workflow_name = "[WORKFLOW_NAME]"  # Replace with your workflow name
-    notebook_name = "[NOTEBOOK_NAME]"  # Replace with your notebook name
+    username = "opierce"
+    workflow_name = "quarterly_by_city:pb7v"
+    notebook_name = "quarterly_by_city:r3y8"
     
     notebook = redivis.notebook(f"{username}.{workflow_name}.{notebook_name}")
     
